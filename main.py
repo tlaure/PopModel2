@@ -20,7 +20,7 @@ y1=pyramidFvalues[yearPos,:]
 plots.plotPyramid(x1,y1)
 
 #Start projection
-year=2000 #select starting year
+year=1990 #select starting year
 pyramidYearPos=sum((pyramidYearVect==year)*np.arange(pyramidYearVect.size))+1
 yearsHist=pyramidYearVect[0:pyramidYearPos:]
 #historical data starting year included
@@ -29,7 +29,7 @@ pyramidHistW=pyramidFvalues[0:pyramidYearPos,:]
 
 
 
-nProj=10 #number of year of projetion
+nProj=5 #number of year of projetion
 #Real data on the last year of projection
 pyramidProjM=pyramidMvalues[pyramidYearPos+nProj-1,:]
 pyramidProjW=pyramidFvalues[pyramidYearPos+nProj-1,:]
@@ -37,6 +37,8 @@ pyramidProjW=pyramidFvalues[pyramidYearPos+nProj-1,:]
 
 
 #Projection gives the pyramid for each year to the last year of projection
-(popAllM,popAllW)=projModule.projPop2(pyramidHistM,pyramidHistW,yearsHist,nProj)'''
+import projModule
+(popAllM,popAllW)=projModule.projPop2(pyramidHistM,pyramidHistW,yearsHist,nProj)
 #Plot the pyearmid at the end of the projection with the real data
-plots.plot2Pyramid(pyramidProjM,PopM[-1,:],pyramidProjW,PopW[-1,:])
+plots.plot2Pyramid(pyramidProjM,popAllM[-1,:],pyramidProjW,popAllW[-1,:])
+
