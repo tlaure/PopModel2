@@ -24,7 +24,7 @@ def projPop2(PopM,PopW,yearVect,nProj):
         #Begin with the birth that happen during the first year
         
         (birthRateYear,BirthMFratio)=projBirth(PopM,PopW,yearVect,indics)
-        AvgMF=(sum(PopM[-1,24:34])+sum(PopW[-1,24:34]))/2
+        AvgMF=(sum(PopM[-1,18:41])+sum(PopW[-1,18:41]))/2
         birthYear=AvgMF*birthRateYear
             
         #Take the last vector in the pyramid and project
@@ -139,7 +139,7 @@ def projBirth(PopM,PopW,yearVect,indics):
     for iYear in range(1,yearHist):
         #Birth rate as a % of population between 18 to 45
         BirthN = PopM[iYear,0]+PopW[iYear,0]
-        AvgMF = (sum(PopW[iYear-1,25:36])+sum(PopM[iYear-1,25:36]))/2
+        AvgMF = (sum(PopW[iYear-1,18:41])+sum(PopM[iYear-1,18:41]))/2
         BirthRate[iYear-1,0] = BirthN/AvgMF
         MFratioTab[iYear-1] = PopM[iYear,0]/(PopW[iYear,0]+PopM[iYear,0])
         if iYear>1:
@@ -175,7 +175,7 @@ def projBirth(PopM,PopW,yearVect,indics):
     birthRateVect=all_data['birthRate'].values
     seqInAll=[]
     seqOut=[]
-    seq_size=6
+    seq_size=3
     for i in range(len(all_data)-seq_size):
         seqInAll.append(all_data.values[i:i+seq_size])
         seqOut.append(birthRateVect[i+seq_size])
@@ -191,7 +191,7 @@ def projBirth(PopM,PopW,yearVect,indics):
     # fix random seed for reproducibility
         
     model = Sequential()
-    model.add(LSTM(8, input_shape=(network_input.shape[1], network_input.shape[2])))
+    model.add(LSTM(6, input_shape=(network_input.shape[1], network_input.shape[2])))
     model.add(Dropout(0.3))
     model.add(Dense(6))
     model.add(Dropout(0.3))
